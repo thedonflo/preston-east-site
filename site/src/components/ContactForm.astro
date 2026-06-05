@@ -1,0 +1,96 @@
+---
+interface Props {
+  title?: string;
+  fields?: Array<'name' | 'email' | 'phone' | 'company' | 'employees' | 'pain' | 'message'>;
+  submitLabel?: string;
+  formId?: string;
+}
+const {
+  title = 'Send us a message',
+  fields = ['name', 'email', 'phone', 'message'],
+  submitLabel = 'Send message',
+  formId = 'contact-form',
+} = Astro.props;
+
+const labelMap: Record<string, { label: string; type: string; placeholder?: string; required?: boolean }> = {
+  name: { label: 'Full name', type: 'text', placeholder: 'Jane Doe', required: true },
+  email: { label: 'Work email', type: 'email', placeholder: 'jane@company.com', required: true },
+  phone: { label: 'Phone', type: 'tel', placeholder: '(443) 555-0100' },
+  company: { label: 'Company', type: 'text', placeholder: 'Acme Co.' },
+  employees: { label: 'Employee count', type: 'text', placeholder: '12' },
+  pain: { label: 'Biggest IT pain right now', type: 'textarea', placeholder: 'In one sentence — what would you change about your IT this quarter?' },
+  message: { label: 'How can we help?', type: 'textarea', placeholder: 'A line or two about what you’re trying to solve.', required: true },
+};
+---
+<form
+  id={formId}
+  class="rounded-2xl border border-border bg-card p-6 md:p-8 flex flex-col gap-5"
+  data-ghl-form
+  novalidate
+>
+  <p class="label">// {title}</p>
+
+  {fields.map((f) => {
+    const def = labelMap[f];
+    const id = `${formId}-${f}`;
+    return (
+      <div class="flex flex-col gap-2">
+        <label for={id} class="text-sm text-fg/80 font-medium">
+          {def.label}
+          {def.required && <span class="text-lime ml-1" aria-hidden="true">*</span>}
+        </label>
+        {def.type === 'textarea' ? (
+          <textarea
+            id={id}
+            name={f}
+            rows="4"
+            placeholder={def.placeholder}
+            required={def.required}
+            class="bg-bg/60 border border-border rounded-xl px-4 py-3 text-sm text-fg placeholder:text-muted focus:outline-none focus:border-lime/60 transition resize-y"
+          />
+        ) : (
+          <input
+            id={id}
+            name={f}
+            type={def.type}
+            placeholder={def.placeholder}
+            required={def.required}
+            class="bg-bg/60 border border-border rounded-xl px-4 py-3 text-sm text-fg placeholder:text-muted focus:outline-none focus:border-lime/60 transition"
+          />
+        )}
+      </div>
+    );
+  })}
+
+  <button
+    type="submit"
+    class="btn-primary justify-center w-full sm:w-auto sm:self-start mt-2"
+  >
+    {submitLabel}
+    <span aria-hidden="true">→</span>
+  </button>
+
+  <p id={`${formId}-status`} class="text-sm text-muted min-h-[1.5em]" aria-live="polite"></p>
+
+  <p class="text-xs text-muted leading-relaxed">
+    By submitting you agree to be contacted about your inquiry. We don’t share or sell your info.
+    See <a href="/privacy" class="text-fg hover:text-lime">Privacy</a>.
+  </p>
+</form>
+
+<script is:inline define:vars={{ formId }}>
+  const form = document.getElementById(formId);
+  const status = document.getElementById(formId + '-status');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!status) return;
+    status.textContent = 'Sending…';
+    status.style.color = '';
+    // TODO: wire to GHL Contacts API server endpoint (src/pages/api/contact.ts) in Phase 4.
+    // For now, just acknowledge locally.
+    await new Promise((r) => setTimeout(r, 600));
+    status.textContent = 'Thanks — we will reply within one business day.';
+    status.style.color = '#C5F82A';
+    form.reset();
+  });
+</script>

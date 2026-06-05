@@ -1,0 +1,47 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Free IT Health Check',
+    body:
+      '30 minutes, zero pitch. We review your cloud spend, security posture, backup status, and tech debt. You walk away with a 1-page report and clear next steps — whether you hire us or not.',
+  },
+  {
+    number: '02',
+    title: 'Scoped Engagement',
+    body:
+      'We propose a tier (Foundation, Growth, or Command) or a custom scope based on your priorities. Clear deliverables, clear timelines, clear pricing. Month-to-month — no annual lock-in.',
+  },
+  {
+    number: '03',
+    title: 'Build, Optimize, Maintain',
+    body:
+      'We deliver. Monthly check-ins so you always know where your IT stands. Scale up or down as your business changes.',
+  },
+];
+---
+<section class="border-b border-border bg-card/30">
+  <div class="container-px max-w-7xl mx-auto py-24 md:py-32">
+    <div class="flex flex-col gap-4 max-w-3xl mb-16">
+      <p class="label">// How we work</p>
+      <h2 class="font-serif text-4xl md:text-6xl leading-tight">
+        Three steps. <span class="italic text-lime">No mystery.</span>
+      </h2>
+    </div>
+
+    <ol class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 relative">
+      {steps.map((s, i) => (
+        <li class="relative flex flex-col gap-4">
+          <div class="flex items-center gap-4">
+            <span class="font-serif italic text-6xl text-lime leading-none">{s.number}</span>
+            {i < steps.length - 1 && (
+              <span class="hidden md:block flex-1 border-t border-dashed border-border" aria-hidden="true"></span>
+            )}
+          </div>
+          <h3 class="font-serif text-2xl md:text-3xl text-fg leading-tight">{s.title}</h3>
+          <p class="text-fg/75 leading-relaxed">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

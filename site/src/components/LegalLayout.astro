@@ -1,0 +1,23 @@
+---
+interface Props { lastUpdated: string }
+const { lastUpdated } = Astro.props;
+---
+<section class="border-b border-border">
+  <div class="container-px max-w-3xl mx-auto py-16 md:py-24 prose-content">
+    <p class="label mb-4">// Last updated {lastUpdated}</p>
+    <div class="legal text-fg/85 leading-relaxed space-y-6">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .legal h2 { font-family: 'Lora', serif; font-size: 1.75rem; line-height: 1.2; margin-top: 2.25rem; margin-bottom: 0.5rem; color: #E8E8E8; }
+  .legal h3 { font-family: 'Lora', serif; font-style: italic; color: #C5F82A; font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.25rem; }
+  .legal p { margin: 0.75rem 0; }
+  .legal ul { list-style: disc; padding-left: 1.25rem; }
+  .legal ul li { margin: 0.25rem 0; }
+  .legal a { color: #C5F82A; }
+  .legal a:hover { text-decoration: underline; }
+  .legal strong { color: #E8E8E8; }
+</style>

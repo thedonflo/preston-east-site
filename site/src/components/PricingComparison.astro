@@ -1,0 +1,123 @@
+---
+type Cell = boolean | string;
+interface Row { feature: string; foundation: Cell; growth: Cell; command: Cell }
+interface Group { label: string; rows: Row[] }
+
+const groups: Group[] = [
+  {
+    label: 'Cloud',
+    rows: [
+      { feature: 'Cloud cost audit', foundation: true, growth: true, command: true },
+      { feature: 'Ongoing cloud optimization', foundation: false, growth: true, command: true },
+      { feature: 'Multi-region / HA architecture', foundation: false, growth: 'On request', command: true },
+    ],
+  },
+  {
+    label: 'Managed IT',
+    rows: [
+      { feature: 'Helpdesk &amp; monitoring', foundation: true, growth: true, command: true },
+      { feature: 'OS &amp; app patching', foundation: true, growth: true, command: true },
+      { feature: 'Vendor management', foundation: false, growth: true, command: true },
+      { feature: 'Dedicated comms channel', foundation: false, growth: false, command: true },
+    ],
+  },
+  {
+    label: 'Security &amp; Compliance',
+    rows: [
+      { feature: 'Security baseline audit', foundation: true, growth: true, command: true },
+      { feature: 'Endpoint protection (full deploy)', foundation: false, growth: true, command: true },
+      { feature: 'Compliance gap analysis', foundation: false, growth: 'Basics', command: true },
+      { feature: 'SOC 2 / HIPAA readiness program', foundation: false, growth: false, command: true },
+    ],
+  },
+  {
+    label: 'Build &amp; QA',
+    rows: [
+      { feature: 'App support &amp; light dev', foundation: false, growth: 'up to 10 hrs/mo', command: 'up to 25 hrs/mo' },
+      { feature: 'QA &amp; testing support', foundation: false, growth: true, command: true },
+      { feature: 'Full test automation suite', foundation: false, growth: false, command: true },
+    ],
+  },
+  {
+    label: 'Strategy',
+    rows: [
+      { feature: 'Strategy session cadence', foundation: 'Quarterly', growth: 'Quarterly', command: 'Monthly' },
+      { feature: 'Fractional CTO sessions', foundation: false, growth: false, command: true },
+      { feature: 'Annual tech roadmap', foundation: false, growth: true, command: true },
+    ],
+  },
+  {
+    label: 'Support',
+    rows: [
+      { feature: 'Support hours', foundation: 'Business', growth: 'Extended', command: '24/7' },
+      { feature: 'Monthly status report', foundation: true, growth: true, command: true },
+      { feature: 'No-fault exit (14 days’ notice)', foundation: true, growth: true, command: true },
+    ],
+  },
+];
+
+function renderCell(v: Cell) {
+  if (v === true) return { kind: 'check' as const };
+  if (v === false) return { kind: 'dash' as const };
+  return { kind: 'text' as const, text: v };
+}
+---
+<section class="border-b border-border bg-card/20">
+  <div class="container-px max-w-7xl mx-auto py-20 md:py-28">
+    <div class="flex flex-col gap-4 max-w-3xl mb-12">
+      <p class="label">// Tier comparison</p>
+      <h2 class="font-serif text-3xl md:text-5xl leading-tight">
+        Side-by-side. <span class="italic text-lime">No fine print.</span>
+      </h2>
+    </div>
+
+    <div class="overflow-x-auto rounded-2xl border border-border bg-card">
+      <table class="w-full text-left text-sm md:text-base">
+        <thead>
+          <tr class="border-b border-border">
+            <th class="p-5 font-sans font-medium text-fg/80 w-2/5">Feature</th>
+            <th class="p-5 font-sans font-medium text-fg/80 text-center">Foundation</th>
+            <th class="p-5 font-sans font-medium text-lime text-center">Growth</th>
+            <th class="p-5 font-sans font-medium text-fg/80 text-center">Command</th>
+          </tr>
+        </thead>
+        <tbody>
+          {groups.map((g) => (
+            <>
+              <tr class="bg-bg/40">
+                <td colspan="4" class="px-5 py-3">
+                  <span class="label" set:html={`// ${g.label}`} />
+                </td>
+              </tr>
+              {g.rows.map((r) => (
+                <tr class="border-t border-border/60">
+                  <td class="px-5 py-3 text-fg/85 leading-snug" set:html={r.feature} />
+                  {[r.foundation, r.growth, r.command].map((v) => {
+                    const c = renderCell(v);
+                    return (
+                      <td class="px-5 py-3 text-center">
+                        {c.kind === 'check' && (
+                          <span class="inline-flex text-lime" aria-label="Included">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                          </span>
+                        )}
+                        {c.kind === 'dash' && (
+                          <span class="text-border" aria-label="Not included">—</span>
+                        )}
+                        {c.kind === 'text' && (
+                          <span class="text-fg/80 text-xs uppercase tracking-label" set:html={c.text} />
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

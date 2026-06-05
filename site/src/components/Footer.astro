@@ -1,0 +1,74 @@
+---
+const cols = [
+  {
+    label: 'Company',
+    items: [
+      { href: '/', label: 'Home' },
+      { href: '/services', label: 'Services' },
+      { href: '/pricing', label: 'Pricing' },
+      { href: '/about', label: 'About' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    label: 'Services',
+    items: [
+      { href: '/services#cloud', label: 'Cloud Solutions' },
+      { href: '/services#app-dev', label: 'Application Development' },
+      { href: '/services#qa', label: 'QA & Test Automation' },
+      { href: '/services#managed-it', label: 'Managed IT Services' },
+      { href: '/services#security', label: 'Cybersecurity & Compliance' },
+      { href: '/services#fractional-cto', label: 'Fractional CTO' },
+    ],
+  },
+  {
+    label: 'Get Started',
+    items: [
+      { href: '/health-check', label: 'Free IT Health Check' },
+      { href: '/contact', label: 'Book a Discovery Call' },
+      { href: '/#faq', label: 'FAQ' },
+    ],
+  },
+];
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-border bg-bg">
+  <div class="container-px max-w-7xl mx-auto py-16 grid grid-cols-2 md:grid-cols-4 gap-10">
+    {cols.map((col) => (
+      <div>
+        <p class="label mb-4">// {col.label}</p>
+        <ul class="space-y-2">
+          {col.items.map((it) => (
+            <li><a href={it.href} class="text-fg/80 hover:text-lime text-sm">{it.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    ))}
+    <div>
+      <p class="label mb-4">// Contact</p>
+      <ul class="space-y-2 text-sm text-fg/80">
+        <li><a href="mailto:info@prestoneastsolutions.com" class="hover:text-lime">info@prestoneastsolutions.com</a></li>
+        <li><a href="tel:+14432183731" class="hover:text-lime">(443) 218-3731</a></li>
+        <li class="text-muted leading-relaxed">
+          1125 West St, Ste 200 #335<br />
+          Annapolis, MD 21401
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-border">
+    <div class="container-px max-w-7xl mx-auto py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-muted">
+      <div class="flex items-center gap-4">
+        <a href="/privacy" class="hover:text-lime">Privacy Policy</a>
+        <span>·</span>
+        <a href="/terms" class="hover:text-lime">Terms of Service</a>
+        <span>·</span>
+        <span>© {year} Preston East Solutions LLC</span>
+      </div>
+      <div>
+        AI Automation Services — launching 2026.
+        <a href="/contact" class="text-lime hover:underline ml-1">Join early access list</a>
+      </div>
+    </div>
+  </div>
+</footer>

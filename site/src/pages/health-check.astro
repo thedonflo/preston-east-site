@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ContactForm from '../components/ContactForm.astro';
+import GHLCalendar from '../components/GHLCalendar.astro';
+import Guarantee from '../components/Guarantee.astro';
+
+const bullets = [
+  { title: 'Cloud Spend Audit', detail: 'Where’s the waste in your AWS, Azure, or Google Cloud bill?' },
+  { title: 'Security Posture Check', detail: 'What’s exposed that shouldn’t be?' },
+  { title: 'Backup Status', detail: 'Would you actually survive a ransomware attack?' },
+  { title: 'Tech Debt Inventory', detail: 'What’s slowing you down right now?' },
+  { title: '1-Page Action Report', detail: 'Yours to keep. Hire us or don’t — the report is yours.' },
+];
+---
+<Layout
+  title="Free IT Health Check — Preston East Solutions"
+  description="A free 30-minute IT diagnostic across cloud, security, backups, and tech debt — followed by a 1-page action report you keep. No pitch."
+>
+  <PageHeader
+    label="Free IT Health Check"
+    title="30 minutes. Zero pitch."
+    emphasis="Zero pitch."
+    subtitle="Book a slot, share your top IT pain, and walk away with a 1-page report scoring six domains and naming the top 3–5 things to fix in the next 90 days."
+  />
+
+  <section class="border-b border-border">
+    <div class="container-px max-w-7xl mx-auto py-20 md:py-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <p class="label">// What you get</p>
+        <h2 class="font-serif text-3xl md:text-4xl leading-tight">
+          A real diagnostic — <span class="italic text-lime">not a sales call.</span>
+        </h2>
+        <ul class="grid grid-cols-1 gap-5 mt-2">
+          {bullets.map((b) => (
+            <li class="flex gap-4">
+              <span class="shrink-0 mt-1 text-lime" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <div>
+                <p class="text-fg font-medium leading-snug">{b.title}</p>
+                <p class="text-muted text-sm leading-relaxed mt-1">{b.detail}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p class="text-xs text-muted mt-4 leading-relaxed">
+          No credit card. No sales pressure. Worst case: you leave with a free
+          report and a clearer picture of your IT.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7 flex flex-col gap-6">
+        <ContactForm
+          title="Step 1 — Tell us what to look at"
+          fields={['name', 'email', 'phone', 'company', 'employees', 'pain']}
+          submitLabel="Save intake &amp; book a time"
+          formId="health-check-intake"
+        />
+        <div class="rounded-2xl border border-border bg-card/60 p-6 md:p-8 flex flex-col gap-4">
+          <p class="label">// Step 2 — Pick a time</p>
+          <GHLCalendar height={720} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Guarantee />
+</Layout>

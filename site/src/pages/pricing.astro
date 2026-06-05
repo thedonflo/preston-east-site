@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PricingTiers from '../components/PricingTiers.astro';
+import PricingComparison from '../components/PricingComparison.astro';
+import FAQ from '../components/FAQ.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+---
+<Layout
+  title="Pricing — Preston East Solutions"
+  description="Straightforward, month-to-month pricing across three tiers — Foundation, Growth, and Command — plus Custom for federal and one-off projects."
+>
+  <PageHeader
+    label="Pricing"
+    title="No “call us for a quote” games."
+    emphasis="“call us for a quote”"
+    subtitle="Three monthly tiers built to map to natural employee-count breakpoints — plus Custom for federal subcontract work and one-off projects."
+  />
+  <PricingTiers />
+  <PricingComparison />
+  <FAQ />
+  <FinalCTA />
+</Layout>

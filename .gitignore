@@ -1,0 +1,13 @@
+.env
+.env.*
+*.local
+node_modules/
+.DS_Store
+screenshots/
+
+# Session recordings (large, ephemeral)
+*.gif
+
+# Session-only working doc — see PROGRESS_TRACKER.md header for convention
+PROGRESS_TRACKER.md
+

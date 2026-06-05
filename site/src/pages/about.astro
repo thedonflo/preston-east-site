@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FounderStory from '../components/FounderStory.astro';
+import Industries from '../components/Industries.astro';
+import Certifications from '../components/Certifications.astro';
+import Guarantee from '../components/Guarantee.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+---
+<Layout
+  title="About — Preston East Solutions"
+  description="Why Preston East exists, the industries we’ve worked across, and the capability stack behind the practice."
+>
+  <PageHeader
+    label="About"
+    title="Built by an operator, not a salesperson."
+    emphasis="operator,"
+    subtitle="15+ years across federal, SaaS, healthcare, finance, and e-commerce — distilled into a partner small businesses can actually afford."
+  />
+  <FounderStory />
+  <Industries />
+  <Certifications />
+  <Guarantee />
+  <FinalCTA />
+</Layout>

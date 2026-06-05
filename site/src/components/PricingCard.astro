@@ -1,0 +1,68 @@
+---
+interface Props {
+  label: string;
+  name: string;
+  emphasis?: string;
+  price: string;
+  priceSuffix?: string;
+  setup?: string;
+  best: string;
+  includes: string[];
+  cta: string;
+  href: string;
+  highlight?: boolean;
+}
+const {
+  label,
+  name,
+  emphasis,
+  price,
+  priceSuffix = '/month',
+  setup,
+  best,
+  includes,
+  cta,
+  href,
+  highlight = false,
+} = Astro.props;
+---
+<article class={`relative flex flex-col gap-6 rounded-2xl border p-8 ${highlight ? 'border-lime bg-card' : 'border-border bg-card/60'}`}>
+  {highlight && (
+    <span class="absolute -top-3 left-8 inline-block bg-lime text-bg text-xs uppercase tracking-label font-medium rounded-full px-3 py-1">
+      // Most popular
+    </span>
+  )}
+  <p class="label">// {label}</p>
+  <h3 class="font-serif text-3xl md:text-4xl leading-tight">
+    {emphasis ? (
+      <>
+        {name.replace(emphasis, '')}<span class="italic text-lime">{emphasis}</span>
+      </>
+    ) : name}
+  </h3>
+  <div class="flex items-baseline gap-1">
+    <span class="font-serif text-5xl text-fg">{price}</span>
+    <span class="text-muted text-sm">{priceSuffix}</span>
+  </div>
+  {setup && <p class="text-sm text-muted -mt-3">+ {setup} one-time setup</p>}
+  <p class="text-fg/70 text-sm leading-relaxed italic">{best}</p>
+  <ul class="space-y-3 flex-1 pt-2 border-t border-border">
+    {includes.map((it) => (
+      <li class="flex items-start gap-3 text-sm text-fg/85 leading-relaxed">
+        <span class="shrink-0 mt-0.5 text-lime" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </span>
+        <span set:html={it} />
+      </li>
+    ))}
+  </ul>
+  <a
+    href={href}
+    class={highlight ? 'btn-primary w-full justify-center text-sm' : 'btn-secondary w-full justify-center text-sm'}
+  >
+    {cta}
+    <span aria-hidden="true">→</span>
+  </a>
+</article>

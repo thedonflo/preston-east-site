@@ -1,0 +1,38 @@
+---
+interface Props {
+  calendarId?: string;
+  height?: number;
+}
+const { calendarId, height = 720 } = Astro.props;
+---
+{calendarId ? (
+  <>
+    <iframe
+      src={`https://api.leadconnectorhq.com/widget/booking/${calendarId}`}
+      style={`width:100%; border:none; min-height:${height}px;`}
+      scrolling="no"
+      id={`${calendarId}_iframe`}
+      title="Book a time"
+    ></iframe>
+    <script src="https://link.msgsndr.com/js/form_embed.js" is:inline></script>
+  </>
+) : (
+  <div
+    class="rounded-2xl border border-dashed border-lime/40 bg-card/40 p-10 flex flex-col items-center gap-4 text-center"
+    style={`min-height:${height / 2}px;`}
+  >
+    <p class="label">// Calendar embed</p>
+    <p class="font-serif text-xl text-fg/85 italic max-w-md">
+      The GoHighLevel calendar widget drops in here once Phase 4 is wired.
+    </p>
+    <p class="text-sm text-muted max-w-md">
+      Pass <code class="font-mono text-xs px-1 py-0.5 rounded bg-bg/60 border border-border text-lime">calendarId</code>
+      to <code class="font-mono text-xs px-1 py-0.5 rounded bg-bg/60 border border-border text-lime">&lt;GHLCalendar /&gt;</code>
+      and the live booking iframe replaces this placeholder automatically.
+    </p>
+    <a href="mailto:info@prestoneastsolutions.com?subject=Free%20IT%20Health%20Check" class="btn-primary text-sm mt-2">
+      Email to book — info@prestoneastsolutions.com
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+)}

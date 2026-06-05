@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IT Health Check — Tidewater Dental Group</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap');
+
+@page {
+  size: letter;
+  margin: 0.38in 0.5in 0.32in 0.5in;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #0E0E0E;
+  color: #EFEFE8;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 8.5pt;
+  line-height: 1.35;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.label {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 7pt;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  color: #C7F87C;
+}
+
+.muted { color: #8A8A82; }
+
+em.serif-italic {
+  font-style: italic;
+  color: #C7F87C;
+}
+
+/* ============== HEADER ============== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 7pt;
+  border-bottom: 1px solid #2A2A26;
+  margin-bottom: 8pt;
+}
+
+.brand {
+  font-family: 'Inter', sans-serif;
+  font-size: 8pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #EFEFE8;
+}
+
+.brand .accent { color: #C7F87C; }
+
+.brand-sub {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 7.5pt;
+  color: #8A8A82;
+  margin-top: 2pt;
+}
+
+.title-block { text-align: right; }
+.title {
+  font-family: 'Inter', sans-serif;
+  font-size: 14pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #C7F87C;
+  margin-bottom: 2pt;
+}
+
+.title-meta {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 8.5pt;
+  color: #EFEFE8;
+}
+
+.title-meta strong {
+  font-style: normal;
+  font-weight: 600;
+  color: #EFEFE8;
+}
+
+/* ============== SECTION ============== */
+.section { margin-bottom: 7pt; }
+.section h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 7.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  color: #C7F87C;
+  margin-bottom: 4pt;
+  padding-bottom: 2pt;
+  border-bottom: 1px solid #2A2A26;
+}
+
+.exec p { font-size: 8.5pt; line-height: 1.4; }
+
+.posture {
+  display: inline-block;
+  margin-top: 4pt;
+  font-family: 'Inter', sans-serif;
+  font-size: 7.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  padding: 3pt 8pt;
+  background: #2A0E0E;
+  color: #FF6E6E;
+  border: 1px solid #FF6E6E;
+}
+
+/* ============== SCORECARD ============== */
+table.scorecard {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+
+table.scorecard th {
+  font-family: 'Inter', sans-serif;
+  font-size: 6.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  color: #8A8A82;
+  text-align: left;
+  padding: 4pt 6pt 4pt 0;
+  border-bottom: 1px solid #2A2A26;
+}
+
+table.scorecard td {
+  padding: 3.5pt 6pt 3.5pt 0;
+  border-bottom: 1px solid #1E1E1B;
+  vertical-align: middle;
+  font-size: 8pt;
+}
+
+table.scorecard td:first-child {
+  font-weight: 600;
+  width: 28%;
+}
+
+table.scorecard td:nth-child(2) { width: 13%; }
+
+.rag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 6.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  padding: 2pt 6pt;
+  border-radius: 1pt;
+}
+
+.rag-red    { background: #2A0E0E; color: #FF6E6E; border: 1px solid #5A2020; }
+.rag-amber  { background: #2A2010; color: #FFB94D; border: 1px solid #5A4520; }
+.rag-green  { background: #0E2010; color: #76FF03; border: 1px solid #2A5020; }
+
+.legend {
+  font-size: 7.5pt;
+  font-style: italic;
+  color: #8A8A82;
+  margin-top: 4pt;
+}
+
+/* ============== FINDINGS ============== */
+.findings { display: grid; grid-template-columns: 1fr 1fr; gap: 5pt 12pt; }
+
+.finding {
+  font-size: 8pt;
+  line-height: 1.38;
+  padding-left: 7pt;
+  border-left: 2px solid #C7F87C;
+}
+
+.finding-num {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: #C7F87C;
+  font-size: 8pt;
+}
+
+.finding-title {
+  font-weight: 700;
+  color: #EFEFE8;
+}
+
+.severity {
+  font-family: 'Inter', sans-serif;
+  font-size: 6.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  margin-left: 4pt;
+}
+
+.sev-critical { color: #FF6E6E; }
+.sev-high     { color: #FFB94D; }
+.sev-medium   { color: #C7F87C; }
+
+.finding-body { color: #C8C8C0; margin-top: 2pt; }
+
+/* ============== 90-DAY PLAN ============== */
+.plan { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10pt; }
+
+.plan-col h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 7pt;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  color: #C7F87C;
+  margin-bottom: 4pt;
+}
+
+.plan-col ul {
+  list-style: none;
+  font-size: 7.8pt;
+  line-height: 1.4;
+}
+
+.plan-col li {
+  padding-left: 9pt;
+  position: relative;
+  margin-bottom: 2.5pt;
+  color: #C8C8C0;
+}
+
+.plan-col li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #C7F87C;
+}
+
+/* ============== NEXT STEP ============== */
+.next-step {
+  background: #161613;
+  border: 1px solid #C7F87C;
+  padding: 7pt 10pt;
+  margin-top: 3pt;
+}
+
+.next-step p {
+  font-size: 8pt;
+  line-height: 1.4;
+  margin-bottom: 2pt;
+}
+
+.next-step .cta {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: #C7F87C;
+  letter-spacing: 0.05em;
+  margin-top: 4pt;
+  display: block;
+}
+
+/* ============== FOOTER ============== */
+.footer {
+  margin-top: 6pt;
+  padding-top: 4pt;
+  border-top: 1px solid #2A2A26;
+  display: flex;
+  justify-content: space-between;
+  font-size: 7pt;
+  font-family: 'Inter', sans-serif;
+  color: #8A8A82;
+  letter-spacing: 0.08em;
+}
+
+.footer .accent { color: #C7F87C; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="brand">PRESTON <span class="accent">EAST</span> SOLUTIONS</div>
+    <div class="brand-sub">Enterprise-grade IT without a CTO</div>
+  </div>
+  <div class="title-block">
+    <div class="title">IT Health Check</div>
+    <div class="title-meta"><em>Prepared for</em> <strong>Tidewater Dental Group</strong></div>
+    <div class="title-meta"><em>Date</em> <strong>2026-06-10</strong></div>
+  </div>
+</div>
+
+<div class="section exec">
+  <h2>Executive Summary</h2>
+  <p>Tidewater Dental is running a 22-person, three-location practice on a mix of legacy Windows Server, ad-hoc cloud backups, and shared admin passwords. The infrastructure works day-to-day, but HIPAA exposure is high, recovery from a ransomware event would take 5+ days, and the practice has no formal offboarding for departing staff. The fixes are mostly off-the-shelf — about six weeks of focused work to move from at-risk to healthy.</p>
+  <div class="posture">Overall posture: At risk</div>
+</div>
+
+<div class="section">
+  <h2>Scorecard</h2>
+  <table class="scorecard">
+    <thead>
+      <tr><th>Domain</th><th>Status</th><th>One-line read</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cybersecurity &amp; Compliance</td>
+        <td><span class="rag rag-red">Red</span></td>
+        <td>No MFA on email or PMS; shared admin password across 3 sites; no documented HIPAA controls.</td>
+      </tr>
+      <tr>
+        <td>Cloud &amp; Infrastructure</td>
+        <td><span class="rag rag-amber">Amber</span></td>
+        <td>M365 in use but tenant settings default-permissive; one on-prem server past EOL.</td>
+      </tr>
+      <tr>
+        <td>Backup &amp; Disaster Recovery</td>
+        <td><span class="rag rag-red">Red</span></td>
+        <td>Backups exist but have never been test-restored; RTO unknown; no offsite copy.</td>
+      </tr>
+      <tr>
+        <td>Identity &amp; Access Management</td>
+        <td><span class="rag rag-red">Red</span></td>
+        <td>Four shared logins; no offboarding checklist; ex-staff still in PMS.</td>
+      </tr>
+      <tr>
+        <td>Applications &amp; SaaS Footprint</td>
+        <td><span class="rag rag-amber">Amber</span></td>
+        <td>14 SaaS tools billed, ~5 actively used; no central inventory.</td>
+      </tr>
+      <tr>
+        <td>IT Operations &amp; Support</td>
+        <td><span class="rag rag-amber">Amber</span></td>
+        <td>Help routes through office manager; no ticketing; response times not tracked.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="legend">Red = active risk, fix within 30 days &nbsp;·&nbsp; Amber = degraded, fix within 90 &nbsp;·&nbsp; Green = healthy</div>
+</div>
+
+<div class="section">
+  <h2>Top Findings</h2>
+  <div class="findings">
+    <div class="finding">
+      <div><span class="finding-num">01.</span> <span class="finding-title">No MFA on email or PMS</span><span class="severity sev-critical">Critical</span></div>
+      <div class="finding-body">A single phished credential currently grants attacker access to patient records and email. Highest-probability incident path and the cheapest to close.</div>
+    </div>
+    <div class="finding">
+      <div><span class="finding-num">02.</span> <span class="finding-title">Backups never test-restored</span><span class="severity sev-critical">Critical</span></div>
+      <div class="finding-body">If a ransomware event happened tomorrow, the practice has no proof its backups would actually restore. A test restore is a one-day exercise.</div>
+    </div>
+    <div class="finding">
+      <div><span class="finding-num">03.</span> <span class="finding-title">Shared admin accounts across 3 sites</span><span class="severity sev-high">High</span></div>
+      <div class="finding-body">Auditability is zero — when something changes, there is no record of who did it. Also a HIPAA finding if audited.</div>
+    </div>
+    <div class="finding">
+      <div><span class="finding-num">04.</span> <span class="finding-title">EOL Windows Server hosting imaging share</span><span class="severity sev-high">High</span></div>
+      <div class="finding-body">No security patches since EOL date; one CVE away from forced downtime. Migration to Azure file shares is a two-week project.</div>
+    </div>
+    <div class="finding">
+      <div><span class="finding-num">05.</span> <span class="finding-title">SaaS sprawl — 9 of 14 tools unused</span><span class="severity sev-medium">Medium</span></div>
+      <div class="finding-body">~$1,400/mo in waste; each unused tool is also a credential set someone needs to remember. Quick audit clears both problems.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Recommended Next 90 Days</h2>
+  <div class="plan">
+    <div class="plan-col">
+      <h3>This Week — Quick Wins</h3>
+      <ul>
+        <li>Turn on MFA across M365 and the practice management system</li>
+        <li>Rotate shared admin credentials and create named admin accounts</li>
+      </ul>
+    </div>
+    <div class="plan-col">
+      <h3>Next 30 Days</h3>
+      <ul>
+        <li>Run a backup test-restore and document the RTO</li>
+        <li>Build an offboarding checklist; remove ex-staff from all systems</li>
+        <li>Audit and cancel unused SaaS subscriptions</li>
+      </ul>
+    </div>
+    <div class="plan-col">
+      <h3>60–90 Days</h3>
+      <ul>
+        <li>Migrate imaging share off EOL Windows Server to Azure file shares</li>
+        <li>Document HIPAA technical controls (encryption, access logging, audit trail)</li>
+        <li>Stand up a help ticketing channel so response times are measurable</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Your Next Step</h2>
+  <div class="next-step">
+    <p>This 1-pager is the diagnostic. The next step is a 45-minute scoping call where we turn it into a costed roadmap with start dates and the Preston East tier that fits.</p>
+    <p>For Tidewater Dental, the cluster of HIPAA, multi-site, and 22 employees points to the <em class="serif-italic">Growth</em> tier ($2,997/mo + $2,500 setup) as the natural fit, but we'll confirm on the call.</p>
+    <span class="cta">→ Book scoping call: prestoneastsolutions.com/book</span>
+  </div>
+</div>
+
+<div class="footer">
+  <div>PRESTON <span class="accent">EAST</span> SOLUTIONS &nbsp;·&nbsp; info@prestoneastsolutions.com &nbsp;·&nbsp; (443) 218-3731</div>
+  <div>Annapolis, MD</div>
+</div>
+
+</body>
+</html>

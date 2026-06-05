@@ -1,0 +1,71 @@
+---
+const faqs = [
+  {
+    q: 'How is this different from hiring an MSP?',
+    a: 'Most MSPs only handle helpdesk and monitoring. We deliver across the full stack — cloud architecture, custom development, QA, security, and strategic advisory. One partner, one bill, deep technical depth on each layer.',
+  },
+  {
+    q: 'Can I cancel anytime?',
+    a: 'Yes. All monthly plans are month-to-month. Setup fees are non-refundable once work begins; monthly fees are billed per cycle, with 14 days’ notice required to cancel a future cycle.',
+  },
+  {
+    q: 'Do you have employees, or is this just one person?',
+    a: 'Preston East is a solo practice — meaning you work directly with a 15-year veteran on every engagement, not a junior account manager. When projects exceed solo capacity, vetted contractors are brought in on a per-project basis with full transparency about who’s doing what.',
+  },
+  {
+    q: 'What if I just need a one-off project, not a monthly plan?',
+    a: 'The Custom tier is exactly for that. We scope, quote, and deliver — no monthly commitment required.',
+  },
+  {
+    q: 'Do you work with government clients?',
+    a: 'Yes — with a Public Trust clearance and federal subcontracting background, we work with civilian agencies and prime contractors as a sub. We don’t currently bid as a prime on cleared work.',
+  },
+  {
+    q: 'How fast can you start?',
+    a: 'After your Free IT Health Check, most engagements kick off within 5 business days. Cloud migrations and custom development have project-specific timelines we quote up front.',
+  },
+  {
+    q: 'Will I deal with someone different every time?',
+    a: 'No. You work directly with Flo. If a contractor is brought in for specialized work, you’ll know exactly who they are and what they’re delivering.',
+  },
+  {
+    q: 'What about AI services?',
+    a: 'We use AI tools internally to deliver our work faster — automated diagnostics, smart monitoring, AI-drafted reports. A dedicated AI Automation service line is launching in 2026; ask about early-access during your Health Check.',
+  },
+  {
+    q: 'Are you HIPAA / SOC 2 compliant?',
+    a: 'We help our clients achieve and maintain compliance. As a service provider, we follow security best practices that align with both frameworks, but formal SOC 2 / HIPAA certification of Preston East itself is on the 2026 roadmap.',
+  },
+];
+---
+<section id="faq" class="border-b border-border bg-card/30">
+  <div class="container-px max-w-7xl mx-auto py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+    <div class="lg:col-span-4 flex flex-col gap-4">
+      <p class="label">// FAQ</p>
+      <h2 class="font-serif text-4xl md:text-5xl leading-tight">
+        Questions <span class="italic text-lime">people actually ask.</span>
+      </h2>
+      <p class="text-fg/70 leading-relaxed">
+        Still wondering something? The Free IT Health Check is the fastest
+        way to get a real answer.
+      </p>
+    </div>
+
+    <div class="lg:col-span-8 divide-y divide-border border-y border-border">
+      {faqs.map((f) => (
+        <details class="group py-5">
+          <summary class="flex items-start justify-between gap-6 cursor-pointer list-none">
+            <span class="font-serif text-lg md:text-xl text-fg leading-snug">{f.q}</span>
+            <span class="shrink-0 mt-1 text-lime transition-transform group-open:rotate-45" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-3 text-fg/75 leading-relaxed text-sm md:text-base pr-10">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

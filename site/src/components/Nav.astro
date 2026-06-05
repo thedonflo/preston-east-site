@@ -1,0 +1,57 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<header class="sticky top-0 z-50 bg-bg/80 backdrop-blur border-b border-border">
+  <nav class="container-px max-w-7xl mx-auto flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-2 group">
+      <span class="font-serif italic text-2xl text-fg">Preston</span>
+      <span class="font-sans text-xs uppercase tracking-label text-lime">East</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-8">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="font-sans text-sm text-fg/80 hover:text-lime transition"
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <a href="/health-check" class="hidden md:inline-flex btn-primary text-sm py-2 px-4">
+      Free Health Check →
+    </a>
+    <button
+      id="nav-toggle"
+      aria-label="Open menu"
+      class="md:hidden text-fg"
+    >
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-bg">
+    <ul class="container-px py-4 space-y-3">
+      {links.map((l) => (
+        <li><a href={l.href} class="block py-1 text-fg/80 hover:text-lime">{l.label}</a></li>
+      ))}
+      <li>
+        <a href="/health-check" class="btn-primary text-sm py-2 px-4 w-fit">Free Health Check →</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script is:inline>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

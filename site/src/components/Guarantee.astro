@@ -1,0 +1,38 @@
+---
+const commits = [
+  {
+    title: 'Health Check is genuinely free.',
+    body:
+      'No upsell, no pressure. You leave with the report whether you hire us or not.',
+  },
+  {
+    title: 'Month-to-month — always.',
+    body: 'No annual lock-ins. 14 days’ notice cancels the next cycle.',
+  },
+  {
+    title: 'Outcomes guaranteed.',
+    body:
+      'If we build something to spec and it doesn’t deliver to spec, we fix it. Period.',
+  },
+];
+---
+<section class="border-b border-border">
+  <div class="container-px max-w-7xl mx-auto py-20 md:py-28">
+    <div class="flex flex-col gap-4 max-w-3xl mb-12">
+      <p class="label">// Guarantees</p>
+      <h2 class="font-serif text-3xl md:text-5xl leading-tight">
+        Three <span class="italic text-lime">commitments.</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {commits.map((c, i) => (
+        <article class="rounded-2xl border border-border bg-card p-8 flex flex-col gap-4">
+          <span class="font-serif italic text-5xl text-lime leading-none">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="font-sans text-xl font-medium text-fg leading-snug">{c.title}</h3>
+          <p class="text-fg/75 leading-relaxed">{c.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

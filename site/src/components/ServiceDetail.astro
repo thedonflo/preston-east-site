@@ -1,0 +1,70 @@
+---
+import type { Service } from '../data/services';
+interface Props { service: Service; alt?: boolean }
+const { service, alt = false } = Astro.props;
+
+const iconPaths = {
+  cloud: '<path d="M7 18a4 4 0 0 1 .4-7.98A6 6 0 0 1 19 11a4 4 0 0 1 0 7H7z" />',
+  code: '<polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />',
+  check: '<polyline points="20 6 9 17 4 12" /><circle cx="12" cy="12" r="10" fill="none" />',
+  shield: '<path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z" />',
+  lock: '<rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" />',
+  compass: '<circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />',
+};
+---
+<section
+  id={service.slug}
+  class={`border-b border-border ${alt ? 'bg-card/30' : ''} scroll-mt-20`}
+>
+  <div class="container-px max-w-7xl mx-auto py-20 md:py-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+    <div class="lg:col-span-5 flex flex-col gap-6">
+      <div class="flex items-center gap-4">
+        <span class="font-serif italic text-6xl text-lime leading-none">{service.number}</span>
+        <p class="label">// {service.category}</p>
+      </div>
+      <h2 class="font-serif text-4xl md:text-5xl leading-tight">
+        {service.name.replace(service.emphasis, '')}
+        <span class="italic text-lime">{service.emphasis}</span>
+      </h2>
+      <p class="label">{service.tagline}</p>
+      <p class="text-fg/80 text-base md:text-lg leading-relaxed">{service.description}</p>
+      <div class="mt-2 p-5 rounded-xl border border-dashed border-lime/40 bg-card/40">
+        <p class="label mb-2">// By the numbers</p>
+        <p class="font-serif text-lg text-fg/95 italic leading-snug">{service.stat}</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-7">
+      <div class="rounded-2xl border border-border bg-card p-8 flex flex-col gap-5">
+        <div class="flex items-center justify-between">
+          <p class="label">// What’s included</p>
+          <span class="text-lime opacity-70" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[service.icon]} />
+          </span>
+        </div>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 pt-2 border-t border-border">
+          {service.includes.map((it) => (
+            <li class="flex items-start gap-3 text-sm md:text-base text-fg/85 leading-relaxed">
+              <span class="shrink-0 mt-1 text-lime" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+              <span set:html={it} />
+            </li>
+          ))}
+        </ul>
+        <div class="pt-4 border-t border-border flex flex-wrap items-center gap-3">
+          <a href="/health-check" class="btn-primary text-sm">
+            Talk to us about {service.category.toLowerCase()}
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="/pricing" class="btn-secondary text-sm">
+            See pricing
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

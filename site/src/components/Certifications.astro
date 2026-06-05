@@ -1,0 +1,52 @@
+---
+const capabilities = [
+  {
+    abbr: 'Cloud',
+    name: 'AWS-certified architecture',
+    detail:
+      'Multi-region design, deployment patterns, and cost optimization across AWS, Azure, and GCP.',
+  },
+  {
+    abbr: 'Network',
+    name: 'Cisco-grade networking',
+    detail:
+      'Routing, switching, and network security fundamentals — CCNA-certified depth on the stack.',
+  },
+  {
+    abbr: 'Database',
+    name: 'Microsoft SQL Server',
+    detail:
+      'Design, optimization, and administration tested across high-volume production systems.',
+  },
+  {
+    abbr: 'Federal',
+    name: 'Public Trust ready',
+    detail:
+      'Eligible for civilian agency subcontract work — federal-grade processes baked into delivery.',
+  },
+];
+---
+<section class="border-b border-border bg-card/30">
+  <div class="container-px max-w-7xl mx-auto py-20 md:py-28">
+    <div class="flex flex-col gap-4 max-w-3xl mb-12">
+      <p class="label">// Capabilities</p>
+      <h2 class="font-serif text-3xl md:text-5xl leading-tight">
+        Built on <span class="italic text-lime">enterprise-grade foundations.</span>
+      </h2>
+      <p class="text-fg/70 leading-relaxed">
+        The stack you’re hiring — the actual technical depth behind every
+        recommendation, build, and audit.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {capabilities.map((c) => (
+        <article class="rounded-2xl border border-border bg-card p-6 flex flex-col gap-3 hover:border-lime/60 transition">
+          <p class="label">// {c.abbr}</p>
+          <h3 class="font-serif text-xl text-fg leading-snug">{c.name}</h3>
+          <p class="text-muted text-sm leading-relaxed">{c.detail}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+---
+const bullets = [
+  {
+    title: 'Cloud Spend Audit',
+    detail: 'Where’s the waste in your AWS, Azure, or Google Cloud bill?',
+  },
+  {
+    title: 'Security Posture Check',
+    detail: 'What’s exposed that shouldn’t be?',
+  },
+  {
+    title: 'Backup Status',
+    detail: 'Would you actually survive a ransomware attack?',
+  },
+  {
+    title: 'Tech Debt Inventory',
+    detail: 'What’s slowing you down right now?',
+  },
+  {
+    title: '1-Page Action Report',
+    detail: 'Yours to keep. Hire us or don’t — the report is yours.',
+  },
+];
+---
+<section id="health-check" class="relative border-b border-border overflow-hidden">
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-gradient-to-b from-bg via-bg to-[#0F140E]"></div>
+    <div class="absolute top-0 right-0 w-[50%] h-[70%] bg-lime/10 blur-[180px] rounded-full"></div>
+  </div>
+  <div class="container-px max-w-7xl mx-auto py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+    <div class="lg:col-span-5 flex flex-col gap-6">
+      <p class="label">// Free IT Health Check</p>
+      <h2 class="font-serif text-4xl md:text-5xl leading-tight">
+        30 minutes. <span class="italic text-lime">Zero pitch.</span>
+      </h2>
+      <p class="text-fg/80 text-lg leading-relaxed">
+        Most small business owners don’t know what they don’t know about their
+        IT. Let’s change that — at no cost and no obligation.
+      </p>
+      <div class="pt-2">
+        <a href="/health-check" class="btn-primary">
+          Book My Free Health Check
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      <p class="text-xs text-muted">
+        No credit card. No sales pressure. Worst case: you leave with a free
+        report and a clearer picture of your IT.
+      </p>
+    </div>
+
+    <ul class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+      {bullets.map((b) => (
+        <li class="flex gap-4">
+          <span class="shrink-0 mt-1 text-lime" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </span>
+          <div>
+            <p class="text-fg font-medium leading-snug">{b.title}</p>
+            <p class="text-muted text-sm leading-relaxed mt-1">{b.detail}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,90 @@
+---
+import ServiceCard from './ServiceCard.astro';
+
+const services = [
+  {
+    number: '01',
+    category: 'Cloud',
+    name: 'Cloud Solutions',
+    emphasis: 'Solutions',
+    tagline: 'Right-sized cloud. No more surprise bills.',
+    description:
+      'Audit your AWS, Azure, or GCP setup, eliminate waste, and design infrastructure that scales without ambushing your budget. Migration when it makes sense — and honesty about when it doesn’t.',
+    href: '/services#cloud',
+    icon: 'cloud' as const,
+  },
+  {
+    number: '02',
+    category: 'Build',
+    name: 'Application Development',
+    emphasis: 'Development',
+    tagline: 'Custom software that ships tested.',
+    description:
+      'The internal tool, the integration, the customer-facing app — built by an engineer who has also held DBA and QA roles, so it ships tested, documented, and built to be handed off.',
+    href: '/services#app-dev',
+    icon: 'code' as const,
+  },
+  {
+    number: '03',
+    category: 'Quality',
+    name: 'QA & Test Automation',
+    emphasis: 'Automation',
+    tagline: 'Catch the bug before your customer does.',
+    description:
+      'Manual and automated testing for your existing applications. Test plans, regression suites, CI/CD integration — backed by QA experience across SaaS, healthcare, and federal environments.',
+    href: '/services#qa',
+    icon: 'check' as const,
+  },
+  {
+    number: '04',
+    category: 'Managed IT',
+    name: 'Managed IT Services',
+    emphasis: 'Services',
+    tagline: 'Your IT department, on retainer.',
+    description:
+      'Day-to-day IT handled so you can run the business. Helpdesk, monitoring, patching, vendor management — without the cost of a full-time team.',
+    href: '/services#managed-it',
+    icon: 'shield' as const,
+  },
+  {
+    number: '05',
+    category: 'Security',
+    name: 'Cybersecurity & Compliance',
+    emphasis: 'Compliance',
+    tagline: 'Stop hoping. Know you’re protected.',
+    description:
+      'Security audits, endpoint hardening, policy, and compliance prep (HIPAA basics, SOC 2 readiness). Federal-grade security-first thinking is the default, not the add-on.',
+    href: '/services#security',
+    icon: 'lock' as const,
+  },
+  {
+    number: '06',
+    category: 'Strategy',
+    name: 'Fractional CTO',
+    emphasis: 'CTO',
+    tagline: 'The CTO you couldn’t afford — on the days you need one.',
+    description:
+      'Monthly strategy sessions, vendor evaluations, tech roadmap, hiring guidance, and AI-readiness planning. 15 years across federal, SaaS, healthcare, finance, and e-commerce informs every call.',
+    href: '/services#fractional-cto',
+    icon: 'compass' as const,
+  },
+];
+---
+<section id="services" class="relative border-b border-border">
+  <div class="container-px max-w-7xl mx-auto py-24 md:py-32">
+    <div class="flex flex-col gap-4 max-w-3xl mb-16">
+      <p class="label">// What we do</p>
+      <h2 class="font-serif text-4xl md:text-6xl leading-tight">
+        Six services. <span class="italic text-lime">One operator.</span>
+      </h2>
+      <p class="text-fg/80 text-lg leading-relaxed">
+        Built by someone who has worn every hat in the IT stack — sysadmin,
+        DBA, DevOps engineer, cloud architect, and QA tester.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map((s) => <ServiceCard {...s} />)}
+    </div>
+  </div>
+</section>

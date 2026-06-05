@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ServiceDetail from '../components/ServiceDetail.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { services } from '../data/services';
+---
+<Layout
+  title="Services — Preston East Solutions"
+  description="Six services from one operator: cloud, application development, QA &amp; test automation, managed IT, cybersecurity &amp; compliance, and fractional CTO."
+>
+  <PageHeader
+    label="Services"
+    title="Six services. One operator."
+    emphasis="One operator."
+    subtitle="The full stack a small business needs — without the cost of a full-time IT department. Pick the layer that matters most or combine into a tiered engagement."
+  />
+  {services.map((s, i) => <ServiceDetail service={s} alt={i % 2 === 1} />)}
+  <FinalCTA />
+</Layout>
