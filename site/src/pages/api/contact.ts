@@ -52,9 +52,10 @@ export const POST: APIRoute = async ({ request }) => {
   const locationId = import.meta.env.GHL_LOCATION_ID;
 
   if (!apiKey || !locationId) {
+    console.error('[contact endpoint] missing GHL_API_KEY or GHL_LOCATION_ID env var');
     return jsonResponse(500, {
       ok: false,
-      error: 'Server is missing GHL credentials.',
+      error: 'Something went wrong. Please email info@prestoneastsolutions.com.',
     });
   }
 
