@@ -4,12 +4,14 @@ interface Props {
   fields?: Array<'name' | 'email' | 'phone' | 'company' | 'employees' | 'pain' | 'message'>;
   submitLabel?: string;
   formId?: string;
+  source?: string;
 }
 const {
   title = 'Send us a message',
   fields = ['name', 'email', 'phone', 'message'],
   submitLabel = 'Send message',
   formId = 'contact-form',
+  source = 'Contact',
 } = Astro.props;
 
 const labelMap: Record<string, { label: string; type: string; placeholder?: string; required?: boolean }> = {
@@ -78,19 +80,48 @@ const labelMap: Record<string, { label: string; type: string; placeholder?: stri
   </p>
 </form>
 
-<script is:inline define:vars={{ formId }}>
+<script is:inline define:vars={{ formId, source }}>
   const form = document.getElementById(formId);
   const status = document.getElementById(formId + '-status');
+  const submitBtn = form?.querySelector('button[type="submit"]');
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!status) return;
+
     status.textContent = 'Sending…';
     status.style.color = '';
-    // TODO: wire to GHL Contacts API server endpoint (src/pages/api/contact.ts) in Phase 4.
-    // For now, just acknowledge locally.
-    await new Promise((r) => setTimeout(r, 600));
-    status.textContent = 'Thanks — we will reply within one business day.';
-    status.style.color = '#C5F82A';
-    form.reset();
+    if (submitBtn) submitBtn.disabled = true;
+
+    const payload = { source };
+    new FormData(form).forEach((value, key) => {
+      payload[key] = typeof value === 'string' ? value.trim() : value;
+    });
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
+        status.textContent = 'Thanks — we will reply within one business day.';
+        status.style.color = '#C5F82A';
+        form.reset();
+      } else {
+        status.textContent =
+          data.error ||
+          'Something went wrong. Please email info@prestoneastsolutions.com.';
+        status.style.color = '#ff7a7a';
+      }
+    } catch {
+      status.textContent =
+        'Network error. Please email info@prestoneastsolutions.com.';
+      status.style.color = '#ff7a7a';
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
 </script>

@@ -11,3 +11,6 @@ screenshots/
 # Session-only working doc — see PROGRESS_TRACKER.md header for convention
 PROGRESS_TRACKER.md
 
+# Claude Code local settings + project hooks
+.claude/
+
