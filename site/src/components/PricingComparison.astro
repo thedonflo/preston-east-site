@@ -97,14 +97,14 @@ function renderCell(v: Cell) {
                     return (
                       <td class="px-5 py-3 text-center">
                         {c.kind === 'check' && (
-                          <span class="inline-flex text-lime" aria-label="Included">
+                          <span class="inline-flex text-lime" role="img" aria-label="Included">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
                               <polyline points="20 6 9 17 4 12" />
                             </svg>
                           </span>
                         )}
                         {c.kind === 'dash' && (
-                          <span class="text-border" aria-label="Not included">—</span>
+                          <span class="text-border" role="img" aria-label="Not included">—</span>
                         )}
                         {c.kind === 'text' && (
                           <span class="text-fg/80 text-xs uppercase tracking-label" set:html={c.text} />
