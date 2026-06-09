@@ -6,11 +6,13 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  showChatWidget?: boolean;
 }
 
 const {
   title = 'Preston East Solutions — Enterprise-grade IT for Small Businesses',
   description = '15 years of enterprise IT experience — cloud, security, development, and strategy — delivered to small businesses without the cost of a full-time CTO.',
+  showChatWidget = true,
 } = Astro.props;
 ---
 <!doctype html>
@@ -39,5 +41,13 @@ const {
       <slot />
     </main>
     <Footer />
+    {showChatWidget && (
+      <script
+        src="https://widgets.leadconnectorhq.com/loader.js"
+        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+        data-widget-id="6a28481b17728c1e13c4fd5f"
+        data-source="WEB_USER"
+      ></script>
+    )}
   </body>
 </html>
