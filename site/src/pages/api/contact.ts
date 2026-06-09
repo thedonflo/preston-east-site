@@ -16,6 +16,7 @@ type FormField =
 
 type FormPayload = Partial<Record<FormField, string>> & {
   source?: string;
+  smsConsent?: string;
 };
 
 const splitName = (full: string): { firstName: string; lastName: string } => {
@@ -37,13 +38,18 @@ const ghlHeaders = (apiKey: string) => ({
   'Content-Type': 'application/json',
 });
 
-const buildNote = (data: FormPayload): string => {
+const buildNote = (data: FormPayload, smsOptedIn: boolean): string => {
   const lines: string[] = [];
   if (data.source) lines.push(`Source: ${data.source}`);
   if (data.company) lines.push(`Company: ${data.company}`);
   if (data.employees) lines.push(`Employees: ${data.employees}`);
   if (data.pain) lines.push(`Biggest IT pain: ${data.pain}`);
   if (data.message) lines.push(`Message: ${data.message}`);
+  if (data.phone) {
+    lines.push(
+      `SMS consent: ${smsOptedIn ? 'YES' : 'NO'} at ${new Date().toISOString()} via ${data.source || 'Website'}`,
+    );
+  }
   return lines.join('\n');
 };
 
@@ -74,6 +80,13 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const { firstName, lastName } = splitName(data.name);
+  const smsOptedIn = data.smsConsent === 'yes' && !!data.phone;
+
+  const tags = [
+    'Lead - Website',
+    data.source ? `Form - ${data.source}` : 'Form - Contact',
+  ];
+  if (data.phone) tags.push(smsOptedIn ? 'SMS - Opted In' : 'SMS - Opted Out');
 
   const contactBody: Record<string, unknown> = {
     locationId,
@@ -81,7 +94,7 @@ export const POST: APIRoute = async ({ request }) => {
     lastName,
     email: data.email,
     source: data.source || 'Website',
-    tags: ['Lead - Website', data.source ? `Form - ${data.source}` : 'Form - Contact'],
+    tags,
   };
   if (data.phone) contactBody.phone = data.phone;
   if (data.company) contactBody.companyName = data.company;
@@ -104,7 +117,7 @@ export const POST: APIRoute = async ({ request }) => {
   const contactJson = (await contactRes.json()) as { contact?: { id?: string } };
   const contactId = contactJson?.contact?.id;
 
-  const noteBody = buildNote(data);
+  const noteBody = buildNote(data, smsOptedIn);
   if (contactId && noteBody) {
     const noteRes = await fetch(`${GHL_API}/contacts/${contactId}/notes`, {
       method: 'POST',

@@ -64,6 +64,24 @@ const labelMap: Record<string, { label: string; type: string; placeholder?: stri
     );
   })}
 
+  {fields.includes('phone') && (
+    <div class="flex items-start gap-3 pt-1">
+      <input
+        id={`${formId}-smsConsent`}
+        name="smsConsent"
+        type="checkbox"
+        value="yes"
+        class="mt-1 h-4 w-4 shrink-0 rounded border-border bg-bg/60 text-lime focus:outline-none focus:ring-2 focus:ring-lime/40 accent-lime"
+      />
+      <label for={`${formId}-smsConsent`} class="text-xs text-muted leading-relaxed">
+        I agree to receive SMS booking confirmations and reminders from Preston East Solutions
+        at the number above. Up to 4 messages per appointment. Reply STOP to opt out, HELP for help.
+        Message and data rates may apply. See <a href="/sms-policy" class="text-fg hover:text-lime">SMS Policy</a>
+        and <a href="/privacy" class="text-fg hover:text-lime">Privacy</a>. Consent is not required to receive our services.
+      </label>
+    </div>
+  )}
+
   <button
     type="submit"
     class="btn-primary justify-center w-full sm:w-auto sm:self-start mt-2"
