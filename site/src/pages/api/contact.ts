@@ -99,7 +99,7 @@ export const POST: APIRoute = async ({ request }) => {
   if (data.phone) contactBody.phone = data.phone;
   if (data.company) contactBody.companyName = data.company;
 
-  const contactRes = await fetch(`${GHL_API}/contacts/`, {
+  const contactRes = await fetch(`${GHL_API}/contacts/upsert`, {
     method: 'POST',
     headers: ghlHeaders(apiKey),
     body: JSON.stringify(contactBody),
@@ -107,14 +107,17 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!contactRes.ok) {
     const errText = await contactRes.text();
-    console.error('[contact endpoint] GHL create failed', contactRes.status, errText);
+    console.error('[contact endpoint] GHL upsert failed', contactRes.status, errText);
     return jsonResponse(502, {
       ok: false,
       error: 'Could not reach our lead system. Please email info@prestoneastsolutions.com.',
     });
   }
 
-  const contactJson = (await contactRes.json()) as { contact?: { id?: string } };
+  const contactJson = (await contactRes.json()) as {
+    contact?: { id?: string };
+    new?: boolean;
+  };
   const contactId = contactJson?.contact?.id;
 
   const noteBody = buildNote(data, smsOptedIn);
