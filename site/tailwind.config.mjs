@@ -12,8 +12,8 @@ export default {
         border: '#262626',
       },
       fontFamily: {
-        serif: ['Lora', 'ui-serif', 'Georgia', 'serif'],
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['Lora', 'Lora Fallback', 'ui-serif', 'Georgia', 'serif'],
+        sans: ['Inter', 'Inter Fallback', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
         label: '0.2em',

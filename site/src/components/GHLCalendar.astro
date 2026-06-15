@@ -11,10 +11,11 @@ const { calendarId, height = 720 } = Astro.props;
       src={`https://api.leadconnectorhq.com/widget/booking/${calendarId}`}
       style={`width:100%; border:none; min-height:${height}px;`}
       scrolling="no"
+      loading="lazy"
       id={`${calendarId}_iframe`}
       title="Book a time"
     ></iframe>
-    <script src="https://link.msgsndr.com/js/form_embed.js" is:inline></script>
+    <script defer src="https://link.msgsndr.com/js/form_embed.js" is:inline></script>
   </>
 ) : (
   <div
